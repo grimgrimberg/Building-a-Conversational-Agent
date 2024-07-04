@@ -1,0 +1,5 @@
+order_id,status
+12345,processed and expected to ship within the next 2 business days
+67890,shipped and will be delivered by the end of the week
+54321,delayed due to an issue with the payment method
+09876,delivered
