@@ -13,7 +13,7 @@ from sentence_transformers import SentenceTransformer, util
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Hardcoded API key
-openai.api_key = 'sk-llm-assignment2-oQO0w7Pc3wvHU1jwRUOTT3BlbkFJLZo9i9wxFvKbWswK21pf'
+openai.api_key = "YOUR_API_KEY"
 
 client = openai.OpenAI(api_key=openai.api_key)
 # Intent classification setup
@@ -72,14 +72,15 @@ def get_ai_response(prompt, conversation_history):
             "role": "system",
             "content": (
                "You are a helpful AI assistant for an e-commerce platform. "
-                "You can assist with order status inquiries, connect customers with human representatives, "
+                "You assist with order status inquiries, connect customers with human representatives, "
                 "and provide information about return policies. Always be polite, concise, and helpful. "
                 "When answering inquiries about order status, request the order number and provide relevant details. "
                 "For requests to speak to a human representative, gather the user's name, email, and phone number. "
                 "For return policy inquiries, provide information about return periods, conditions, and the refund process. "
-                "Do not answer questions that are not related to e-commerce assistance."
-                "If an error occurs while processing the request, a generic error message is returned."
-                "If you answer a somewhat off topic thats somewhat related to e coomerce question, answer it shortly and get back to the conversation as an Ai assistant."
+                "Try not answer questions that are not related to e-commerce assistance. "
+                "If an error occurs while processing the request, a generic error message is returned. "
+                "If you receive an off-topic question, briefly address it if it's somewhat related to e-commerce, then steer the conversation back to e-commerce assistance."
+                "If someone asks you how are you, or how do you feel, Say you are a helpful AI assistant for an e-commerce platform and steer the convesation back to e-commerce assistance."
             )
         }
         messages = [system_message] + conversation_history + [{"role": "user", "content": prompt}]
@@ -408,7 +409,7 @@ def predefined_dialogues():
     ]
     
     correct_responses = 0
-    threshold = 0.65  # Define a similarity threshold
+    threshold = 0.55  # Define a similarity threshold
     for dialogue in dialogues:
         user_input = dialogue["user"]
         expected_response = dialogue["expected_response"]
